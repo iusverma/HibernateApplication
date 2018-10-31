@@ -1,4 +1,4 @@
-package com.testinfra.csvloader;
+package com.testinfra.util;
 
 import static org.junit.Assert.assertTrue;
 
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class PrimeNumberCheckerTest {
+public class TestCaseGeneratorUtil {
    private String testCaseId;
    private static final String testCaseList = "1-4,6,7,8,11-15";
 
@@ -20,7 +20,7 @@ public class PrimeNumberCheckerTest {
    // Every time runner triggers, it will pass the arguments
    // from parameters we defined in primeNumbers() method
 	
-   public PrimeNumberCheckerTest(String testCaseId) {
+   public TestCaseGeneratorUtil(String testCaseId) {
       this.testCaseId = testCaseId;;
    }
 
@@ -43,6 +43,18 @@ public class PrimeNumberCheckerTest {
       assertTrue(true);
    }
 
+   /**
+    * This method takes a string input and returns collection of test cases ids
+    * String format
+    * 1. comma separated for individual test cases
+    * Example: 1,2,3,4,5 returns TC1,TC2,TC3,TC4,TC5
+    * 2. hyphen separated for range of test cases
+    * Example: 1-4 returns TC1,TC2,TC3,TC4
+    * 3. mix mode containing commma and hyphen
+    * Example: 1-3,5,6,9-11 returns TC1,TC2,TC3,TC5,TC6,TC9,TC10,TC11
+    * @param input
+    * @return
+    */
    private static Collection getTestCasesForExecution(String input){
 	   String testCasePrefix = "TC";
 	   List<String> testCasesForExecution = new ArrayList<String>();
